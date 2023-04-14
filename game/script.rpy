@@ -1,9 +1,9 @@
 ﻿# Charactes defined here
-define He = Character("Helium", color="ccccff", what_prefix='"', what_suffix='"')
-define O = Character("Oxygen", color="ccccff", what_prefix='"', what_suffix='"')
-define N = Character("Nitrogen", color="ccccff", what_prefix='"', what_suffix='"')
-define Cl = Character("Chlorine", color="ccccff", what_prefix='"', what_suffix='"')
-define C = Character("Carbon", color="ffffcf")
+define He = Character("Helium", color="ffad33", what_prefix='"', what_suffix='"')
+define O = Character("Oxygen", color="ff471a", what_prefix='"', what_suffix='"')
+define N = Character("Nitrogen", color="668cff", what_prefix='"', what_suffix='"')
+define Cl = Character("Chlorine", color="ffff33", what_prefix='"', what_suffix='"')
+define C = Character("Carbon", color="ffff66")
 define Nar = Character(what_italic=True)
 
 # Transition defined here
@@ -90,7 +90,7 @@ label start:
     jump classroomA
 
 label classroomA:
-    scene bg classroom
+    scene bg classroon
     show helium neutral at right
     with enter
 

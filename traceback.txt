@@ -1,28 +1,42 @@
 ﻿I'm sorry, but an uncaught exception occurred.
 
 While running game code:
-  File "game/script.rpy", line 100, in script
-    show chlorine happy at slightright with {"master: dissolve"}
-TypeError: 'RevertableSet' object is not callable
+  File "renpy/common/00start.rpy", line 215, in script call
+    call _load_reload_game from _call__load_reload_game_1
+  File "renpy/common/00keymap.rpy", line 517, in script
+    python hide:
+  File "renpy/common/00keymap.rpy", line 517, in <module>
+    python hide:
+  File "renpy/common/00keymap.rpy", line 528, in _execute_python_hide
+    renpy.load(renpy.session["_reload_slot"])
+Exception: Couldn't find a place to stop rolling back. Perhaps the script changed in an incompatible way?
 
 -- Full Traceback ------------------------------------------------------------
 
 Full traceback:
-  File "game/script.rpy", line 100, in script
-    show chlorine happy at slightright with {"master: dissolve"}
-  File "C:\Users\stuar\Downloads\renpy-8.0.3-sdk\renpy\ast.py", line 1658, in execute
-    renpy.exports.with_statement(trans, paired=paired)
-  File "C:\Users\stuar\Downloads\renpy-8.0.3-sdk\renpy\exports.py", line 1657, in with_statement
-    return renpy.game.interface.do_with(trans, paired, clear=clear)
-  File "C:\Users\stuar\Downloads\renpy-8.0.3-sdk\renpy\display\core.py", line 2798, in do_with
-    return self.interact(trans_pause=True,
-  File "C:\Users\stuar\Downloads\renpy-8.0.3-sdk\renpy\display\core.py", line 3377, in interact
-    repeat, rv = self.interact_core(preloads=preloads, trans_pause=trans_pause, pause=pause, pause_start=pause_start, pause_modal=pause_modal, **kwargs) # type: ignore
-  File "C:\Users\stuar\Downloads\renpy-8.0.3-sdk\renpy\display\core.py", line 3752, in interact_core
-    trans = self.ongoing_transition[None](
-TypeError: 'RevertableSet' object is not callable
+  File "renpy/common/00start.rpy", line 215, in script call
+    call _load_reload_game from _call__load_reload_game_1
+  File "renpy/common/00keymap.rpy", line 517, in script
+    python hide:
+  File "C:\Users\stuar\Downloads\renpy-8.0.3-sdk\renpy\ast.py", line 1131, in execute
+    renpy.python.py_exec_bytecode(self.code.bytecode, self.hide, store=self.store)
+  File "C:\Users\stuar\Downloads\renpy-8.0.3-sdk\renpy\python.py", line 1061, in py_exec_bytecode
+    exec(bytecode, globals, locals)
+  File "renpy/common/00keymap.rpy", line 517, in <module>
+    python hide:
+  File "renpy/common/00keymap.rpy", line 528, in _execute_python_hide
+    renpy.load(renpy.session["_reload_slot"])
+  File "C:\Users\stuar\Downloads\renpy-8.0.3-sdk\renpy\loadsave.py", line 769, in load
+    log.unfreeze(roots, label="_after_load")
+  File "C:\Users\stuar\Downloads\renpy-8.0.3-sdk\renpy\rollback.py", line 1078, in unfreeze
+    self.rollback(0, force=True, label=label, greedy=greedy, on_load=True)
+  File "C:\Users\stuar\Downloads\renpy-8.0.3-sdk\renpy\rollback.py", line 889, in rollback
+    self.load_failed()
+  File "C:\Users\stuar\Downloads\renpy-8.0.3-sdk\renpy\rollback.py", line 807, in load_failed
+    raise Exception("Couldn't find a place to stop rolling back. Perhaps the script changed in an incompatible way?")
+Exception: Couldn't find a place to stop rolling back. Perhaps the script changed in an incompatible way?
 
 Windows-10-10.0.19044 AMD64
 Ren'Py 8.0.3.22090809
 Carbon Dating 1.0
-Fri Apr 14 14:04:17 2023
+Fri Apr 14 14:29:55 2023
