@@ -1,9 +1,9 @@
 ﻿# Charactes defined here
-define He = Character("Helium", color="ffad33", what_prefix='"', what_suffix='"')
-define O = Character("Oxygen", color="ff471a", what_prefix='"', what_suffix='"')
-define N = Character("Nitrogen", color="668cff", what_prefix='"', what_suffix='"')
-define Cl = Character("Chlorine", color="ffff33", what_prefix='"', what_suffix='"')
-define C = Character("Carbon", color="ffff66")
+define He = Character("Helium", color="ccccff", what_prefix='"', what_suffix='"')
+define O = Character("Oxygen", color="ccccff", what_prefix='"', what_suffix='"')
+define N = Character("Nitrogen", color="ccccff", what_prefix='"', what_suffix='"')
+define Cl = Character("Chlorine", color="ccccff", what_prefix='"', what_suffix='"')
+define C = Character("Carbon", color="ffffcf")
 define Nar = Character(what_italic=True)
 
 # Transition defined here
@@ -90,14 +90,14 @@ label start:
     jump classroomA
 
 label classroomA:
-    scene bg classroon with dissolve
+    scene bg classroom
     show helium neutral at right
     with enter
 
-    show chlorine neutral at slightleft with moveinleft
+    show chlorine neutral at center with moveinleft
 
     Nar "You and Chlorine make it to the Honors class just in time."
-    show chlorine happy at center with ease
+    show chlorine happy at slightright with ease
     Nar "As you slip in and take your seat in the middle of the room you see that Chlorine broke off from you and is now whispering something to the professor."
 
     show helium happy with fadeWithText
@@ -116,246 +116,6 @@ label classroomA:
     He "Now normally a professor wouldn't deem it necessary to welcome a new student to a lecture class but this is the Honors class after all."
     show helium happy with fadeWithText
     He "Everyone please welcome [C.name] to our class. They will be joining us for the rest of the semester.{w} It's not every day that a new student slips into the Honors class at the last minute."
-
-    Nar "The whole of the class looks to you. Some faces smile, others glare, and others simply don’t care. {w} They give you applause led by the Professor."
-    
-    hide helium with leave
-
-
-    Nar "As the class calms a few faces look at you a little longer than the rest."
-
-    show chlorine neutral at center with enter
-
-    show oxygen neutral at left behind chlorine with enter
-
-    show nitrogen neutral at right behind chlorine with enter
-    
-    Nar "There is Chlorine who is devilishly smirking at you along with a boy in red and a girl in blue."
-
-    hide chlorine
-    hide nitrogen
-    hide oxygen
-    with dissolve
-
-    Nar "Class seems to drag on as Professor Helium seems to adore long lectures. But as the day flies by the class comes to a close with a final important note."
-
-    show helium happy at center with enter
-    He "Class time is about over but there is one more thing I want to remind you all of before our next class Friday."
-    He "The Molecular Dance is coming up this Friday night and it's required that all Honors students attend as role models for the rest of the students."
-    show helium neutral with fadeWithText
-    He "I know I've told you this all before but this is still important for our newest student to know."
-
-    show helium sad with fadeWithText
-    He "Oh and remember. {w} It is not required but being a bonded pair is strongly suggested."
-
-    show helium happy
-    He "So make sure you bring your plus one with you."
-
-    show chlorine neutral at left with moveinleft
-    pause 0.5
-    show chlorine happy with fadeWithText
-    pause 0.1
-
-    Nar "You catch Chlorine staring at you with a smile raising his eyebrows in a mocking manner."
-
-    pause 0.5
-    hide chlorine happy with moveoutleft
-
-    show helium neutral with fadeWithText
-    He "That's all the time we have.{w} I'll see you all Friday morning for our second class time."
-
-    Nar "The professor gathers her things and leaves the classroom. A few other students follow her out."
-
-    hide helium with moveoutright
-    pause 0.5
-
-    Nar "As you gather your things Chlorine stops you."
-
-    show chlorine neutral at center with moveinleft
-    pause 0.5
-    Cl "Act natural, but you have two of my least favorable exs heading this way. I'm running, but you cover me."
-
-    show chlorine happy with dissolve
-    pause 0.5
-    show chlorine at slightleft with ease
-    hide chlorine with moveoutright
-    pause 0.5
-
-    Nar "Chlorine leaves abruptly only giving you enough time to turn and greet the two other students approaching you. It's the boy and girl from earlier."
-
-    pause 0.25
-    show oxygen happy at slighterright with moveinright
-    show nitrogen neutral at slighterleft with moveinleft
-    pause 0.25
-
-    N "Hi welcome to Catalyst University. I’m Nitrogen."
-
-    O "Yeah, it's nice to meet you. You can call me Oxygen."
-
-    O "Oh by the way, sorry for that embarrassment that the Prof put you through at the start of class."
-    O "It was Chlorine who did that, wasn't it? {w}He's always been missing a few electrons."
-
-    show nitrogen sad with fadeWithText
-    N "He's not missing anything Oxygen. He's just a troublemaker."
-
-    show oxygen neutral with fadeWithText
-    O "I'm just joking. Don't take it so literally."
-
-    show nitrogen neutral with fadeWithText
-    N "Whatever, I've got to head out." 
-
-    pause 0.25
-    show nitrogen at center
-    show oxygen at right
-    with ease
-    pause 0.25
-    show nitrogen happy
-    pause 0.25
-
-    N "But it was really nice meeting you [C.name]. I'd like to get to know more about you."
-    menu:
-        "It was nice meeting you too. Let's hang out sometime.":
-            show nitrogen happy with fadeWithText
-            N "Absolutely. See ya around."
-            $ nitrogen_love += 5
-        "See ya.":
-            pause 1.0
-            show nitrogen sad with fadeWithText
-            N "Yup, see ya."
-            $ nitrogen_love -= 5
-
-    pause 0.25
-    hide nitrogen with moveoutright
-    pause 0.25
-    show oxygen at center with ease
-    pause 0.5
-
-    Nar "Nitrogen exits the classroom leaving you alone with oxygen."
-
-    show oxygen happy with fadeWithText
-    O "So hey can I ask you something? I promise it's nothing serious."
-
-    menu:
-        "Sure, go ahead":
-            O "Are you planning on actually going to the dance?"
-            menu:
-                "Yeah I guess, it's required.":
-                    show oxygen happy with fadeWithText
-                    O "That's fair. I was just curious if it's actually your kind of thing. {w}I know the opinions of all the others so I was just curious about yours." 
-                "It's not really my thing.":
-                    show oxygen neutral
-                    O "I can understand where you are coming from but it's sort of important you go. {w}A student at this university without any strong bonds gets left behind."
-                    O "Plus you're in the honors class. So think about it."
-        "I've got to go, maybe later":
-            $ oxygen_love -= 5
-            show oxygen sad with fadeWithText
-            O "Oh yeah, sure later. It's nothing anyways.{w} Just make sure don't forget to find someone for the dance. Consider this a friendly reminder."
-        "It's okay if its serious. You're pretty cool.":
-            $ oxygen_love += 5
-            show oxygen happy with fadeWithText #fades to neutral at “Make sure”
-            O "Wow you're really nice. That's cool."
-            show oxygen neutral with fadeWithText
-            O "Well, here's the deal. Make sure you don't come alone to the molecular dance. Want to know why?"
-            menu: 
-                "Sure.":
-                    show oxygen neutral with fadeWithText
-                    O "Everyone who has ever been in the honors class shows up in a bonded pair. It's tradition."
-                    O "It's so important that if you don't have someone with you you're gonna be removed from the honors class and even worse basically socially shunned."
-                    O "So for real, make sure you bring someone with you.{w} It's really important."    
-                "Uh okay. This is kind of weird.":
-                    show oxygen neutral with fadeWithText
-                    O "Weird? No not really. If you come alone you are basically saying goodbye to the honors class and your social life here. So for real, don't come alone."
-
-    show oxygen happy with fadeWithText
-    O "Well I got to go. Maybe I'll see you around."
-
-    hide oxygen with moveoutright
-
-    Nar "Oxygen leaves the classroom leaving you alone with thoughts."
-
-    Nar "You go through the rest of your day of classes. {w}It's a long day and the workload at this university isn't easy."
-    Nar "But you manage to finish everything before finally laying down for some rest in your shared dorm room."
-
-    jump dorm2
-
-label dorm2:
-    scene bg dorm with dissolve
-    pause 0.5
-    show chlorine neutral at left with enter
-    Nar "As you crash down onto your bed you see out of the corner of your eye, Chlorine looking at you from his bed."
-
-    menu:
-        "What's up?":
-            pause 0.1
-        "Ignore him.":
-            pause 0.1
-        "Stop that.":
-            pause 0.1
-    show chlorine at center with ease
-    pause 0.5
-    show chlorine happy with fadeWithText
-
-    Cl "So… {w=0.5}those two were definitely checking you out."
-    menu:
-        "What are you talking about?!":
-            pause 0.1
-        "Huhh?":
-            pause 0.1
-        "No, they weren't.":
-            pause 0.1
-
-    show chlorine neutral with fadeWithText
-    Cl "Don't play stupid. Oxygen and Nitrogen so want to get with you. It's really clear."
-
-    Cl "So which do you think you have better chemistry with? Tell me now or I won't let you sleep."
-    
-    menu:
-        "Uh Oxygen maybe.":
-            show chlorine happy with fadeWithText
-            Cl "He's nice, but just wait till you get to know him for real. There is a reason I dumped him."
-            # Start Oxygen path
-        "Maybe Nitrogen, she's cool.":
-            show chlorine happy with fadeWithText
-            Cl "Cool, but she's really closed off. So make sure you be nice to her. She didn't stick with me too long." 
-            # Start Nitrogen path
-        "Shut up! I just got here.":
-            show chlorine sad with fadeWithText
-            Cl "Okay, now I'm being serious. If my roommate fails to get bring someone to the dance I'm gonna be socially outcasted by proxy so for real if you had to choose who would you choose?"
-            menu:
-                "Fine, Oxygen I guess":
-                    show chlorine happy with fadeWithText
-                    Cl "He's nice, but just wait till you get to know him for real. There is a reason I dumped him."
-                    # Start Oxygen path
-                "I think Nitrogen":
-                    show chlorine happy with fadeWithText
-                    Cl "Cool, but she's really closed off. So make sure you be nice to her. She didn't stick with me too long." 
-                    # Start Nitrogen path
-
-    show chlorine neutral with fadeWithText
-    Cl "Well I'm gonna get some rest now. You can start planning out your arrival to the molecular dance."
-
-    hide chlorine with leave
-
-    Nar "You slowly drift off into sleep as your mind is racing with the absolute craziness of today."
-    Nar "What is this school's deal? What have you gotten into? {w} Are some of the questions filling your mind?"
-    Nar "But out of them all, you can't help but wonder what will be your chemical romance."
-
-
-
-
-
-
-
-            
-
-
-
-
-
-
-
-
-
 
     
 label old:
