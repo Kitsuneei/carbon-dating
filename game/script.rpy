@@ -1,17 +1,18 @@
-﻿
+﻿# Charactes defined here
 define h = Character("Helium", color="ffcccc")
 define o = Character("Oxygen", color="ccccff", what_prefix='"', what_suffix='"')
 define n = Character("Nitrogen", color="ccccff", what_prefix='"', what_suffix='"')
-
 define c = Character("Test", color="ffffcf")
 define nar = Character(what_italic=True)
 
+# Transition defined here
 define fadeWithText = { "master" : Dissolve(0.5) }
 define moveSpeed = 0.5
 define leave = Dissolve(moveSpeed)
 define enter = Dissolve(moveSpeed)
 define boxSpeed = 0.25
 
+# Transform defined here
 transform slightleft:
     xalign 0.25
     yalign 1.0
@@ -25,15 +26,11 @@ transform slighterright:
     xalign 0.85
     yalign 1.0
 
+# Game variables defined here
 define nitrogen_love = 0
 define oxygen_love = 0
 
 # The game starts here.
-
-
-
-
-
 label start:
 
     scene bg room
@@ -76,10 +73,9 @@ label start:
     scene bg room
     $ oxygen_love = 0
 
-    # Show a background. This uses a placeholder by default, but you can
-    # add a file (named either "bg room.png" or "bg room.jpg") to the
-    # images directory to show it.
+    return
 
+label testing:
     "testing"
 
     
@@ -130,5 +126,4 @@ label start:
 
     # This ends the game.
 
-    return
 
