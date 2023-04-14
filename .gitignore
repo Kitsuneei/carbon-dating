@@ -1,4 +1,20 @@
+# Ignore files in the saves/ directory
 game/saves/
-errors.txt
-log.txt
+
+# Ignore the error and traceback files
+error.txt
 traceback.txt
+log.txt
+
+# Ignore Python cache files
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+# Ignore environment files
+.env
+
+# Ignore editor specific files
+.idea/
+.vscode/
