@@ -2,9 +2,9 @@
 errors listed below, and try again.
 
 
-File "game/script.rpy", line 30: expected end of line
-    window hide with Dissolve(boxSpeed)
-                ^
+File "game/script.rpy", line 115: expected statement.
+    He “Everyone please welcome [C.name] to our class. They will be joining us for the rest of the semester. It’s not every day that a new student slips into the Honors class at the last minute.”
+                                ^
 
 Ren'Py Version: Ren'Py 8.0.3.22090809
-Thu Apr 13 22:45:17 2023
+Fri Apr 14 14:14:18 2023
