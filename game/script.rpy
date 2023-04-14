@@ -27,11 +27,22 @@ transform slighterleft:
 transform slighterright:
     xalign 0.85
     yalign 1.0
+transform wiggle(x=640, z=0.80):
+    xcenter x yoffset 0 yanchor 1.0 ypos 1.03 zoom z*1.00 alpha 1.00 subpixel True
+    easein 0.15 xoffset 20
+    easeout 0.15 xoffset 0
+    easein 0.15 xoffset -15
+    easeout 0.15 xoffset 0
+    easein 0.15 xoffset 10
+    easeout 0.15 xoffset 0
+    easein 0.15 xoffset -5
+    ease 0.15 xoffset 0
 
 # Game variables defined here
 define nitrogen_love = 0
 define oxygen_love = 0
 define current_path = "oxygen"
+define date_accept = False
 
 # The game starts here.
 label start:
@@ -381,11 +392,13 @@ label tuesday_oxygen:
         "Sure, I loved to.": # + oxygen opinion
             $ oxygen_love += 5
             show oxygen happy with fadeWithText
+            $ date_accept = True
             O "Awesome! I'll see you then. Tomorrow at 6 pm."
 
         "I'm actually busy tomorrow so maybe later this week": # - oxygen opinion
             $ oxygen_love -= 5
             show oxygen neutral with fadeWithText
+            $ date_accept = False
             O "Yeah that's fine. I can swing by your place tomorrow maybe to work something else out."
 
     show oxygen happy with fadeWithText
@@ -459,6 +472,93 @@ label tuesday_dorm:
     Nar "You think to yourself, that he's probably out with someone."
 
     Nar "As you lay down and begin to fall asleep, relaxing from the stress of all the work ahead of you. {w}You remember that you still need to find an official date for the Molecular Dance."
+
+    if date_accept == True:
+        if (current_path == "oxygen"):
+            jump wednesday_oxygen
+
+label wednesday_oxygen:
+    scene bg bleachers with Dissolve(1.0)
+
+    Nar "As you arrive at the Basketball court you see there is a game between your school's team and a visiting school."
+    Nar "There are dozens of people watching the game in the bleachers.{w} As you scan the crowd you catch the eyes of Oxygen starting back at you."
+    Nar "Oxygen waves you over and you head up the bleachers to meet him. {w}The spot he brought you to is high up and in the back where it's nearly like you two are alone."
+
+    show oxygen happy with fadeWithText
+
+    O "I'm glad you came. I was sort of worried I may have scared you off with my invitation. I know I can be too much sometimes."
+    menu:
+        "You're fine, it's actually kind of cute.":# + oxygen opinion
+            $ oxygen_love += 5
+            show oxygen happy with fadeWithText
+            O "Dang, I was right before you really are nice."
+
+        "Only sometimes, but I'm glad I'm here.":# - oxygen opinion
+            $ oxygen_love -= 5
+            show oxygen neutral with fadeWithText
+            O "I'm glad you are too."
+
+    Nar "He turns away from you and focuses on the game. {w}You two sit there for a moment simply enjoying each other's company."
+    Nar "At one point the crowd cheers and Oxygen stands up to cheer with them."
+    show oxygen happy at slightleft with ease
+    show oxygen happy at slightright with ease
+    show oxygen happy at center with ease
+    menu:
+        "Cheer with the crowd.":
+            Nar "You stand up and cheer with the crowd. Oxygen notices and seems to approve. He sits back down with the rest of the crowd."
+        "Don't cheer.":
+            Nar "You watch as the crowd erupts with praise.{w} You look Oxygen and he seems to take note of your not cheering."
+            Nar "He doesn't appear displeased but more concerned instead."
+
+    Nar "Oxygen leans over to you."
+
+    show oxygen neutral with fadeWithText
+    O "Are you having fun?"
+    menu:
+        "Absolutely, I'm really glad I came.":# + oxygen opinion
+            show oxygen happy with fadeWithText
+            $ oxygen_love += 5
+            O "I'm glad you did because honestly when you walked into class I knew we would bond well." 
+
+        "Well, It's not really my thing.":# - oxygen opinion
+            $ oxygen_love -= 5
+            show oxygen sad with fadeWithText
+            O "Sorry, I guess I just assumed. Well, it's almost over anyways."
+            Nar "Oxygen turns away from you and looks back at the game. You can tell he's a bit upset."
+        
+    Nar "As the game continues and starts to head to its last few minutes you notice that oxygen catches the eyes of an element in the crowd."
+    Nar "He waves down to the other element. You think she's Gold but you can't be sure. You just know Gold is the most popular student on campus."
+
+    show oxygen neutral with fadeWithText
+    O "Excuse me for a moment. Business calls."
+
+    pause 0.5
+    show oxygen at slightright with ease
+    hide oxygen with moveoutleft
+    pause 0.5
+
+    Nar "You see Oxygen heads down the bleachers and meets with Gold for a moment."
+    Nar "They talk for a minute but it seems like Gold is in a hurry. She opens one of her hands and there is a small bundle of cash."
+
+    Nar "Oxygen grabs the cash and then reaches into a side pocket of his coat and pulls out a small container of something colorless."
+
+    Nar "Gold takes the substance and looks it over. She seems displeased. She talks with Oxygen and for a moment they seem to argue."
+    Nar "But the tension quickly fades and she walks away. Oxygen heads back up to your seats."
+    Nar "As he sits down you catch a glimpse of the bundle of money he slips into his pocket."
+
+    menu:
+        "What's the money for?":
+        "You don't say anything.":
+
+
+
+
+
+
+
+
+
+label wednesday_nitrogen:
 
 
 
