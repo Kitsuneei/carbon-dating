@@ -4,6 +4,7 @@ define O = Character("Oxygen", color="ff471a", what_prefix='"', what_suffix='"')
 define N = Character("Nitrogen", color="668cff", what_prefix='"', what_suffix='"')
 define Cl = Character("Chlorine", color="ffff33", what_prefix='"', what_suffix='"')
 define C = Character("Carbon", color="ffff66")
+define M = Character("???", color="ffffff", what_prefix='"', what_suffix='"')
 define Nar = Character(what_italic=True)
 
 # Transition defined here
@@ -30,6 +31,7 @@ transform slighterright:
 # Game variables defined here
 define nitrogen_love = 0
 define oxygen_love = 0
+define current_path = "oxygen"
 
 # The game starts here.
 label start:
@@ -313,11 +315,11 @@ label dorm2:
         "Uh Oxygen maybe.":
             show chlorine happy with fadeWithText
             Cl "He's nice, but just wait till you get to know him for real. There is a reason I dumped him."
-            # Start Oxygen path
+            $current_path = "oxygen"
         "Maybe Nitrogen, she's cool.":
             show chlorine happy with fadeWithText
             Cl "Cool, but she's really closed off. So make sure you be nice to her. She didn't stick with me too long." 
-            # Start Nitrogen path
+            $current_path = "nitrogen"
         "Shut up! I just got here.":
             show chlorine sad with fadeWithText
             Cl "Okay, now I'm being serious. If my roommate fails to get bring someone to the dance I'm gonna be socially outcasted by proxy so for real if you had to choose who would you choose?"
@@ -325,11 +327,11 @@ label dorm2:
                 "Fine, Oxygen I guess":
                     show chlorine happy with fadeWithText
                     Cl "He's nice, but just wait till you get to know him for real. There is a reason I dumped him."
-                    # Start Oxygen path
+                    $current_path = "oxygen"
                 "I think Nitrogen":
                     show chlorine happy with fadeWithText
                     Cl "Cool, but she's really closed off. So make sure you be nice to her. She didn't stick with me too long." 
-                    # Start Nitrogen path
+                    $current_path = "nitrogen"
 
     show chlorine neutral with fadeWithText
     Cl "Well I'm gonna get some rest now. You can start planning out your arrival to the molecular dance."
@@ -340,22 +342,128 @@ label dorm2:
     Nar "What is this school's deal? What have you gotten into? {w} Are some of the questions filling your mind?"
     Nar "But out of them all, you can't help but wonder what will be your chemical romance."
 
+label tuesday_start:
+    # Day change here
+    scene bg hallway with Dissolve(2.0)
+    
+    if current_path == "nitrogen":
+        jump tuesday_nitrogen
+    else:
+        jump tuesday_oxygen
+
+label tuesday_oxygen:
+    Nar "As you go about your day you pass through the common area of campus.{w} The crowds of students heading to their classes rush by you."
+    Nar "Someone bumps into you and you drop your books.{w} As you bend down to pick them up someone stops in the crowd to help you."
+    
+    show oxygen happy at center with enter
+
+    O "Oh hey, [C.name]. Let me help you with those."
+
+    Nar "Oxygen bends down and helps you pick up your things.{w} As gather all your books into your bag once more you catch Oxygen smiling at you."
+    O "So someone told me you were maybe into me."
+    menu:
+        "Uh wait, it's not what you think.":
+            show oxygen Sad with fadeWithText
+            O "So you don't like me?"
+            menu:
+                "Wait that’s not what I mean.":
+                    pause 0.1
+                "Well yes but not the way Chlorine may have said.":
+                    pause 0.1
+            show oxygen happy with fadeWithText
+            O "I'm just joking around. I know Chlorine can say the most bizarre things. {w}I don't take anything he says to be the truth."
+        "Chlorine is such an isotope." :
+            show oxygen neutral with fadeWithText
+            O "Don't worry about him. He says a lot of stuff.{w} I don't take anything he says as the truth."
+    show oxygen happy with fadeWithText
+    O "But hey would you maybe want to meet up at the Basketball game tomorrow? {w}I have a good spot high up I usually sit. We can hang out."
+    menu:
+        "Sure, I loved to.": # + oxygen opinion
+            $ oxygen_love += 5
+            show oxygen happy with fadeWithText
+            O "Awesome! I'll see you then. Tomorrow at 6 pm."
+
+        "I'm actually busy tomorrow so maybe later this week": # - oxygen opinion
+            $ oxygen_love -= 5
+            show oxygen neutral with fadeWithText
+            O "Yeah that's fine. I can swing by your place tomorrow maybe to work something else out."
+
+    show oxygen happy with fadeWithText
+    O "Well I have to head to my next class now so I'll see you later."
+
+    pause 0.5
+    hide oxygen with moveoutbottom
+    pause 0.5
+
+    Nar "Oxygen runs off into one of the campus buildings.{w} He's always in a hurry it seems."
+    Nar "You go about the rest of your day finishing your classes and assignments. {w}Not forgetting just how Chlorine talked to Oxygen behind your back." 
+
+    jump tuesday_dorm
+
+label tuesday_nitrogen:
+    Nar "Your second day of classes was going smoothly until you accidentally went to the wrong class and are now running to the correct room"
+    Nar "As you cross through a crowded hall you accidentally bump into another student. Both of your books go flying."
+    M "Ouch!"
+    menu:
+        "Oh, I’m so sorry!":
+            Nar "The other student you ran into rubs her head and looks up at you.{w} As your eyes meet you realize this is Nitrogen from your honors class." 
+            Nar "She appears more embarrassed than she is in pain."
+        "Ouch! That must have hurt.":
+            Nar "The other student looks up to you and glares at you."
+            Nar" Her face looks frustrated and as she looks like she's about to say something insulting a wave of realization hits her and you both. {w} This is Nitrogen from your honors class."
+
+    pause 0.5
+    show nitrogen sad with moveinbottom
+    pause 0.5
+
+    N "Hey I'm sorry about that. I didn't see you and I guess we were both moving pretty fast." 
+
+    Nar "Nitrogen helps you gather your books and as you both tuck everything away she looks back to you." 
+
+    show nitrogen neutral with fadeWithText
+
+    N "So, where are you heading?"
+
+    menu:
+        "Oh just to my next class.":
+            show nitrogen neutral 
+            N "I better not keep you then. But hey would you want to hang out at some point? {w}The campus gardens are pretty open around 6 pm tomorrow."
+            menu:
+                "Sure, I saw them on my tour of the campus. I'll meet you there tomorrow..":# + Nitrogen opinion
+                    pause 0.1
+                "Sounds like a plan. See you then.": # + Nitrogen opinion
+                    pause 0.1
+            $ nitrogen_love += 5
+            show nitrogen happy with fadeWithText
+            N "Perfect. Well, don't be late."
+            N "I don't really care if you are but it's important that I know you aren't just flaking on me. See you then." 
+
+            Nar "Nitrogen heads off down the halls. You are left alone for a moment as you watch her head off."
+            Nar "But as quickly as that moment happens just as quickly you remember you are late for class. {w}You dash slightly below the speed of light." 
+
+        "I'm actually already late for my next class. I have to go.": # - nitrogen opinion 
+            $ nitrogen_love -= 5
+            show nitrogen sad with fadeWithText
+            N "Oh of course! I'll see you later then. Good luck."
+
+    hide nitrogen with leave
+    Nar "You run off down the hall not willing to be late to your next class."
+    Nar "But as you do you can't help but think about Nitrogen for a moment. {w}Maybe you should have stayed and talked to her."
+
+    jump tuesday_dorm
+
+
+label tuesday_dorm:
+    scene bg dorm with Dissolve(1.0)
+    Nar "The rest of your day goes by quickly. By the time you arrive at your dorm room to get some rest, you realize that Chlorine isn't home."
+    Nar "You think to yourself, that he's probably out with someone."
+
+    Nar "As you lay down and begin to fall asleep, relaxing from the stress of all the work ahead of you. {w}You remember that you still need to find an official date for the Molecular Dance."
 
 
 
-
-
-
-            
-
-
-
-
-
-
-
-
-
+label ending:
+    return
 
     
 label old:

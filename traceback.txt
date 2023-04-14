@@ -1,28 +1,30 @@
 ﻿I'm sorry, but an uncaught exception occurred.
 
 While running game code:
-  File "game/script.rpy", line 186, in script
-    show nitrogen neutral at slightleft with moevinleft
-  File "game/script.rpy", line 186, in <module>
-    show nitrogen neutral at slightleft with moevinleft
-NameError: name 'moevinleft' is not defined
+  File "game/script.rpy", line 347, in script
+    scene bg hallway Dissolve(2.0)
+Exception: Image 'bg hallway' does not accept attributes 'Dissolve (2.0)'.
 
 -- Full Traceback ------------------------------------------------------------
 
 Full traceback:
-  File "game/script.rpy", line 186, in script
-    show nitrogen neutral at slightleft with moevinleft
-  File "C:\Users\stuar\Downloads\renpy-8.0.3-sdk\renpy\ast.py", line 1654, in execute
-    paired = renpy.python.py_eval(self.paired)
-  File "C:\Users\stuar\Downloads\renpy-8.0.3-sdk\renpy\python.py", line 1092, in py_eval
-    return py_eval_bytecode(code, globals, locals)
-  File "C:\Users\stuar\Downloads\renpy-8.0.3-sdk\renpy\python.py", line 1085, in py_eval_bytecode
-    return eval(bytecode, globals, locals)
-  File "game/script.rpy", line 186, in <module>
-    show nitrogen neutral at slightleft with moevinleft
-NameError: name 'moevinleft' is not defined
+  File "game/script.rpy", line 347, in script
+    scene bg hallway Dissolve(2.0)
+  File "C:\Users\stuar\Downloads\renpy-8.0.3-sdk\renpy\ast.py", line 1542, in execute
+    show_imspec(self.imspec, atl=getattr(self, "atl", None))
+  File "C:\Users\stuar\Downloads\renpy-8.0.3-sdk\renpy\ast.py", line 1371, in show_imspec
+    renpy.config.show(name,
+  File "C:\Users\stuar\Downloads\renpy-8.0.3-sdk\renpy\exports.py", line 686, in show
+    if not base.find_target() and renpy.config.missing_show:
+  File "C:\Users\stuar\Downloads\renpy-8.0.3-sdk\renpy\display\image.py", line 414, in find_target
+    self.target = target._duplicate(a)
+  File "C:\Users\stuar\Downloads\renpy-8.0.3-sdk\renpy\display\core.py", line 397, in _duplicate
+    args.extraneous()
+  File "C:\Users\stuar\Downloads\renpy-8.0.3-sdk\renpy\display\core.py", line 265, in extraneous
+    raise Exception("Image '{}' does not accept attributes '{}'.".format(
+Exception: Image 'bg hallway' does not accept attributes 'Dissolve (2.0)'.
 
 Windows-10-10.0.19044 AMD64
 Ren'Py 8.0.3.22090809
 Carbon Dating 1.0
-Fri Apr 14 15:08:44 2023
+Fri Apr 14 17:01:07 2023

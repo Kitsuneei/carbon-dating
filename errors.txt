@@ -2,9 +2,9 @@
 errors listed below, and try again.
 
 
-File "game/script.rpy", line 115: expected statement.
-    He “Everyone please welcome [C.name] to our class. They will be joining us for the rest of the semester. It’s not every day that a new student slips into the Honors class at the last minute.”
-                                ^
+File "game/script.rpy", line 442: Line is indented, but the preceding say statement statement does not expect a block. Please check this line's indentation.
+    Nar "Nitrogen heads off down the halls. You are left alone for a moment as you watch her head off."
+    ^
 
 Ren'Py Version: Ren'Py 8.0.3.22090809
-Fri Apr 14 14:14:18 2023
+Fri Apr 14 17:00:12 2023
