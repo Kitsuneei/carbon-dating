@@ -1,5 +1,6 @@
 # Ignore files in the saves/ directory
 game/saves/
+game/cache/
 
 # Ignore the error and traceback files
 error.txt

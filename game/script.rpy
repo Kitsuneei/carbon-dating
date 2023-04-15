@@ -47,19 +47,20 @@ define path_final = "Alone"
 
 # The game starts here.
 label start:
-
+    play music "music/dorm.mp3" fadeout 1.0
     window hide Dissolve(boxSpeed)
-
-    
-    scene bg mondey with dissolve
+    scene bg monday with dissolve
     pause 2.0
     scene bg dorm with dissolve
     
-    Nar "You've finally arrived. After several weeks of waiting you've received your acceptance letter and have finally arrived at Catalyst University, the most prestigious college in the whole country. Now all you have to do is finish unloading your bags."
+    Nar "You've finally arrived. After several weeks of waiting you've received your acceptance letter and have made it to Catalyst University, the most prestigious college in the whole country."
+    Nar "Now all you have to do is finish unloading your bags."
     Nar "After locating your dorm you enter the room to find that it's been completely taken over by your roommate. But they are nowhere in sight. You look at your documentation and see that for their name your roommate has opted to go by their last name, Chlorine."
     Nar "It appears that Chlorine has covered the room with posters and collectibles."
-    Nar "There are posters for the most popular recent bands like \"Bad Reaction\" and \"MATTER\". There is a shelf with a dozen collectibles from the best shows today like \"Solution or Solvent\" and \"Periodic Love\"."
-    Nar "As you get distracted by the dozens of interesting things in this room you hear the dorm room door creak open behind you. A man wearing shades of green walks in through the door, smiling and waving to someone as he steps through the threshold." 
+    Nar "There are posters for the most popular recent bands like \"Vanilla Isotope\" and \"BORON Tennessine (BTs)\"."
+    Nar "There is a shelf with a dozen collectibles from the best shows today like \"Solution or Solvent\" and \"Periodic Love\"."
+    Nar "As you get distracted by the dozens of interesting things in this room you hear the dorm room door creak open behind you."
+    Nar "A man wearing shades of green walks in through the door, smiling and waving to someone as he steps through the threshold." 
     Nar "As he turns to you and shuts the door he stops smiling and looks puzzled."
 
     show chlorine sad at center
@@ -91,7 +92,7 @@ label start:
                 C.name = name.strip() or "Carbon"
             show chlorine neutral with fadeWithText
             Cl "Well, it's nice to meet you [C.name]. At least your name isn't as bad as some of the family names here."
-            Cl "I'll tell you are story late about this one kid Boron."
+            Cl "I'll tell you a story later about this one kid Boron."
         "You can just call me Carbon":
             python:
                 C.name = "Carbon"
@@ -110,6 +111,7 @@ label start:
     jump classroomA
 
 label classroomA:
+    play music "music/classroom.mp3" fadeout 1.0
     scene bg classroon with dissolve
     show helium neutral at right
     with enter
@@ -160,7 +162,7 @@ label classroomA:
     Nar "Class seems to drag on as Professor Helium seems to adore long lectures. But as the day flies by the class comes to a close with a final important note."
 
     show helium happy at center with enter
-    He "Class time is about over but there is one more thing I want to remind you all of before our next class Friday."
+    He "Class time is about over but there is one more thing I want to remind you all of before our next class Thursday."
     He "The Molecular Dance is coming up this Friday night and it's required that all Honors students attend as role models for the rest of the students."
     show helium neutral with fadeWithText
     He "I know I've told you this all before but this is still important for our newest student to know."
@@ -182,7 +184,7 @@ label classroomA:
     hide chlorine happy with moveoutleft
 
     show helium neutral with fadeWithText
-    He "That's all the time we have.{w} I'll see you all Friday morning for our second class time."
+    He "That's all the time we have.{w} I'll see you all Thursday morning for our second class time."
 
     Nar "The professor gathers her things and leaves the classroom. A few other students follow her out."
 
@@ -238,7 +240,7 @@ label classroomA:
             show nitrogen happy with fadeWithText
             N "Absolutely. See ya around."
             $ nitrogen_love += 5
-        "See ya.":
+        "See ya then.":
             pause 1.0
             show nitrogen sad with fadeWithText
             N "Yup, see ya."
@@ -265,7 +267,7 @@ label classroomA:
                 "It's not really my thing.":
                     show oxygen neutral
                     O "I can understand where you are coming from but it's sort of important you go. {w}A student at this university without any strong bonds gets left behind."
-                    O "Plus you're in the honors class. So think about it."
+                    O "Plus you're in the Honors class. So think about it."
         "I've got to go, maybe later":
             $ oxygen_love -= 5
             show oxygen sad with fadeWithText
@@ -279,12 +281,12 @@ label classroomA:
             menu: 
                 "Sure.":
                     show oxygen neutral with fadeWithText
-                    O "Everyone who has ever been in the honors class shows up in a bonded pair. It's tradition."
-                    O "It's so important that if you don't have someone with you you're gonna be removed from the honors class and even worse basically socially shunned."
+                    O "Everyone who has ever been in the Honors class shows up in a bonded pair. It's tradition."
+                    O "It's so important that if you don't have someone with you you're gonna be removed from the Honors class and even worse basically socially shunned."
                     O "So for real, make sure you bring someone with you.{w} It's really important."    
                 "Uh okay. This is kind of weird.":
                     show oxygen neutral with fadeWithText
-                    O "Weird? No not really. If you come alone you are basically saying goodbye to the honors class and your social life here. So for real, don't come alone."
+                    O "Weird? No not really. If you come alone you are basically saying goodbye to the Honors class and your social life here. So for real, don't come alone."
 
     show oxygen happy with fadeWithText
     O "Well I got to go. Maybe I'll see you around."
@@ -299,6 +301,7 @@ label classroomA:
     jump dorm2
 
 label dorm2:
+    play music "music/dorm.mp3" fadeout 1.0
     scene bg dorm with dissolve
     pause 0.5
     show chlorine neutral at left with enter
@@ -357,11 +360,12 @@ label dorm2:
     hide chlorine with leave
 
     Nar "You slowly drift off into sleep as your mind is racing with the absolute craziness of today."
-    Nar "What is this school's deal? What have you gotten into? {w} Are some of the questions filling your mind?"
+    Nar "What is this school's deal? What have you gotten into? {w} These are some of the questions filling your mind."
     Nar "But out of them all, you can't help but wonder what will be your chemical romance."
 
 label tuesday_start:
     # Day change here
+    play music "music/hallway.mp3" fadeout 1.0
     scene bg tuesday with dissolve
     pause 2.0
     scene bg hallway with dissolve
@@ -379,7 +383,7 @@ label tuesday_oxygen:
 
     O "Oh hey, [C.name]. Let me help you with those."
 
-    Nar "Oxygen bends down and helps you pick up your things.{w} As gather all your books into your bag once more you catch Oxygen smiling at you."
+    Nar "Oxygen bends down and helps you pick up your things.{w} After gathering all your books into your bag once more, you catch Oxygen smiling at you."
     O "So someone told me you were maybe into me."
     menu:
         "Uh wait, it's not what you think.":
@@ -423,16 +427,17 @@ label tuesday_oxygen:
     jump tuesday_dorm
 
 label tuesday_nitrogen:
+    play music "music/hallway.mp3" fadeout 1.0
     Nar "Your second day of classes was going smoothly until you accidentally went to the wrong class and are now running to the correct room"
     Nar "As you cross through a crowded hall you accidentally bump into another student. Both of your books go flying."
     M "Ouch!"
     menu:
         "Oh, I'm so sorry!":
-            Nar "The other student you ran into rubs her head and looks up at you.{w} As your eyes meet you realize this is Nitrogen from your honors class." 
+            Nar "The other student you ran into rubs her head and looks up at you.{w} As your eyes meet you realize this is Nitrogen from your Honors class." 
             Nar "She appears more embarrassed than she is in pain."
         "Ouch! That must have hurt.":
             Nar "The other student looks up to you and glares at you."
-            Nar" Her face looks frustrated and as she looks like she's about to say something insulting a wave of realization hits her and you both. {w} This is Nitrogen from your honors class."
+            Nar" Her face looks frustrated and as she looks like she's about to say something insulting a wave of realization hits her and you both. {w} This is Nitrogen from your Honors class."
 
     pause 0.5
     show nitrogen sad with moveinbottom
@@ -478,6 +483,7 @@ label tuesday_nitrogen:
 
 
 label tuesday_dorm:
+    play music "music/dorm.mp3" fadeout 1.0
     scene bg dorm with Dissolve(1.0)
     Nar "The rest of your day goes by quickly. By the time you arrive at your dorm room to get some rest, you realize that Chlorine isn't home."
     Nar "You think to yourself, that he's probably out with someone."
@@ -493,6 +499,7 @@ label tuesday_dorm:
         jump wednesday_skip
 
 label wednesday_oxygen:
+    play music "music/oxygen date.mp3" fadeout 1.0
     scene bg wednesday with dissolve
     pause 2.0
     scene bg bleachers with Dissolve(1.0)
@@ -524,7 +531,7 @@ label wednesday_oxygen:
         "Cheer with the crowd.":
             Nar "You stand up and cheer with the crowd. Oxygen notices and seems to approve. He sits back down with the rest of the crowd."
         "Don't cheer.":
-            Nar "You watch as the crowd erupts with praise.{w} You look Oxygen and he seems to take note of your not cheering."
+            Nar "You watch as the crowd erupts with praise.{w} You look to Oxygen and he seems to take note of you not cheering."
             Nar "He doesn't appear displeased but more concerned instead."
 
     Nar "Oxygen leans over to you."
@@ -591,7 +598,7 @@ label wednesday_oxygen:
 
         "It wouldn't be right for me just to leave.":
             show oxygen neutral with fadeWithText
-        O "Yeah I guess you're right. I'll see you tomorrow."
+            O "Yeah I guess you're right. I'll see you tomorrow."
     
     O "Oh, by the way, this is kind of cheesy but it's something I got to say."
     O "I'm attracted to you to the point where I could make a fifth fundamental force. {w}You're really something special [C.name]."
@@ -612,6 +619,7 @@ label wednesday_oxygen:
 
 
 label wednesday_nitrogen:
+    play music "music/dorm.mp3" fadeout 1.0
     scene bg wednesday with dissolve
     pause 2.0
     scene bg classroon with dissolve
@@ -622,8 +630,8 @@ label wednesday_nitrogen:
     Nar "Finally your last class is wrapped up and you exit the building to cross the school grounds at a speed walk so as not to be late."
     Nar "Nitrogen seems like the kind of person that would hit you upside the head for being late."
 
+    play music "music/garden.mp3" fadeout 1.0
     scene bg greenhouse with Dissolve(1)
-
     Nar "You approach the greenhouse and see the vague shape of someone distorted through the greenhouse glass, but with an unmistakable blue hue."
     menu:
         "Sneak up behind her":# - nitrogen opinion
@@ -702,13 +710,16 @@ label wednesday_nitrogen:
     jump thursday_begin
 
 label wednesday_skip:
+    play music "music/dorm.mp3" fadeout 1.0
     scene bg wednesday with Dissolve(2.0)
     Nar "Wednesday is uneventful. You go through your classes without issue and finish all your assignments on time."
     Nar "You're all set for Thursday mornings class."
     jump thursday_begin
 
 label thursday_begin:
-    scene bg thursday with Dissolve(2.0)
+    play music "music/classroom.mp3" fadeout 1.0
+    scene bg thursday with Dissolve(0.5)
+    pause 2.0
     scene bg classroon with Dissolve(1.0)
     Nar "As you arrive in class this morning you see everyone finding their seats."
     Nar "You see Chlorine waving you over from where he sat earlier in the week."
@@ -716,7 +727,7 @@ label thursday_begin:
     pause 0.25
     show chlorine neutral with enter
 
-    Nar "As you head over he pulls down into your seat and begins to whisper to you." 
+    Nar "As you head over he pulls you down into your seat and begins to whisper to you." 
 
     show chlorine sad with fadeWithText
     Cl "So I heard you blew it. I can't believe I thought you could get a date of your own. I should have kept my Ion you." 
@@ -734,7 +745,7 @@ label thursday_begin:
             show chlorine happy with fadeWithText
             Cl "I know, I was just testing you."
 
-            show chlorine neutral with fade
+            show chlorine neutral with fadeWithText
             Cl "Based on the times you came back to the dorm I had my theories. I'm happy for you."
             Cl "It's hard enough to make new friends on this campus. Not to mention getting a date in time for a dance at the end of the week."
 
@@ -753,13 +764,13 @@ label thursday_begin:
         pause 0.25
         show helium neutral at right with ease
         pause 0.25
-        show nitrogen happy at center with enter
+        show nitrogen happy at center with moveinbottom
         pause 0.25
 
         Nar "At one point in the class you catch Nitrogen staring at you. {w}Your eyes meet and she smiles at you."
 
         pause 0.25
-        hide nitrogen with leave
+        hide nitrogen with moveoutbottom
         pause 0.25
         show helium at center with ease
         pause 0.25
@@ -768,13 +779,13 @@ label thursday_begin:
         pause 0.25
         show helium neutral at right with ease
         pause 0.25
-        show oxygen happy at center with enter
+        show oxygen happy at center with moveinbottom
         pause 0.25
-        Nar "Near the end of the class you turn to stretch in your see and catch Oxygen looking at you."
+        Nar "Near the end of the class you turn to stretch in your seat and catch Oxygen looking at you."
         Nar "He's clearly lost in thought but as your eyes meet he snaps out of it. He smiles at you."
 
         pause 0.25
-        hide oxygen with leave
+        hide oxygen with moveoutbottom
         pause 0.25
         show helium at center with ease
         pause 0.25
@@ -789,23 +800,23 @@ label thursday_begin:
         pause 0.25
         show helium neutral at right with ease
         pause 0.25
-        show oxygen happy at center with enter
+        show oxygen happy at center with moveinbottom
         pause 0.25
         Nar "You catch Oxygen staring at you from the corner of your eye."
         pause 0.25
-        hide oxygen with leave
+        hide oxygen with moveoutbottom
         pause 0.25
         pause 0.25
 
     if nitrogen_love >= 15:
         pause 0.25
-        show helium neutral at right with ease
+        show helium neutral at right with moveinbottom
         pause 0.25
         show nitrogen happy at center with enter
         pause 0.25
         Nar "You see Nitrogen glance at you for a moment." 
         pause 0.25
-        hide nitrogen with leave
+        hide nitrogen with moveoutbottom
         pause 0.25
         pause 0.25
 
@@ -847,7 +858,7 @@ label thursday_begin:
     O "Look Nitrogen get out of my business, you don't even care about Ozone. This doesn't concern you"
 
     show nitrogen sad
-    N "Ozone is a drudge Oxygen and I wouldn't care if you didn't keep stealing from the garden for your ingredients."
+    N "Ozone is a drug Oxygen, and I wouldn't care if you didn't keep stealing from the garden for your ingredients."
 
     Nar "Oxygen rolls his eyes while Nitrogen sighs and rubs her brow. They both turn to look at you, apparently just realizing you heard everything."
 
@@ -941,10 +952,12 @@ label thursday_begin:
 
         "Hey guys sorry about overhearing everything. But I have to go.":
             Nar "You head for the door. It seems like the pair wants to stop you but instead, they let you go."
-            $ path_final = "Nitrogen"
+            $ path_final = "Alone"
 
     Nar "You leave the class building and go about your day. The thoughts of what is and what could have been cloud your mind."
     Nar "But as you finish the rest of your classes for the day you eventually head off to your Dorm room."
+
+    play music "music/dorm.mp3" fadeout 1.0
 
     scene bg dorm with dissolve
     Nar "As you get ready to get some rest for tomorrow Chlorine enters the dorm room shutting the door behind him."
@@ -965,6 +978,7 @@ label thursday_begin:
     jump friday_begin
 
 label friday_begin:
+    play music "music/dance.mp3" fadeout 1.0
     scene bg fiday with dissolve
     pause 2.0
     scene bg dance with dissolve
@@ -1010,8 +1024,8 @@ label nitrogen_end:
 
 
 label ending:
-    Nar "Except for you. As you stand alone in the crowd dancing around you."
-    Nar "You catch a glimpse of Oxygen and Nitrogen dancing together. You are the single particle alone in space."
+    Nar "Except for you. As you stand alone, with the crowd dancing around you. You catch a glimpse of Oxygen and Nitrogen dancing together."
+    Nar "You are the single particle alone in space."
 
     C "Welp, I should have gone to community college."
 
