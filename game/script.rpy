@@ -47,8 +47,14 @@ define path_final = "Alone"
 
 # The game starts here.
 label start:
+
     window hide Dissolve(boxSpeed)
-    scene bg dorm
+
+    
+    scene bg mondey with dissolve
+    pause 2.0
+    scene bg dorm with dissolve
+    
     Nar "You've finally arrived. After several weeks of waiting you've received your acceptance letter and have finally arrived at Catalyst University, the most prestigious college in the whole country. Now all you have to do is finish unloading your bags."
     Nar "After locating your dorm you enter the room to find that it's been completely taken over by your roommate. But they are nowhere in sight. You look at your documentation and see that for their name your roommate has opted to go by their last name, Chlorine."
     Nar "It appears that Chlorine has covered the room with posters and collectibles."
@@ -356,7 +362,9 @@ label dorm2:
 
 label tuesday_start:
     # Day change here
-    scene bg hallway with Dissolve(2.0)
+    scene bg tuesday with dissolve
+    pause 2.0
+    scene bg hallway with dissolve
     
     if current_path == "nitrogen":
         jump tuesday_nitrogen
@@ -485,6 +493,8 @@ label tuesday_dorm:
         jump wednesday_skip
 
 label wednesday_oxygen:
+    scene bg wednesday with dissolve
+    pause 2.0
     scene bg bleachers with Dissolve(1.0)
 
     Nar "As you arrive at the Basketball court you see there is a game between your school's team and a visiting school."
@@ -602,7 +612,9 @@ label wednesday_oxygen:
 
 
 label wednesday_nitrogen:
-    scene bg class with dissolve
+    scene bg wednesday with dissolve
+    pause 2.0
+    scene bg classroon with dissolve
 
     Nar "You spend all of your Wednesday classes in a daze as you anticipate your meeting with Nitrogen this evening."
     Nar "There were more than a few instances where you had to snap yourself back to reality during class, and realized that you had missed a large chunk of the lecture."
@@ -690,11 +702,13 @@ label wednesday_nitrogen:
     jump thursday_begin
 
 label wednesday_skip:
+    scene bg wednesday with Dissolve(2.0)
     Nar "Wednesday is uneventful. You go through your classes without issue and finish all your assignments on time."
     Nar "You're all set for Thursday mornings class."
     jump thursday_begin
 
 label thursday_begin:
+    scene bg thursday with Dissolve(2.0)
     scene bg classroon with Dissolve(1.0)
     Nar "As you arrive in class this morning you see everyone finding their seats."
     Nar "You see Chlorine waving you over from where he sat earlier in the week."
@@ -951,6 +965,8 @@ label thursday_begin:
     jump friday_begin
 
 label friday_begin:
+    scene bg fiday with dissolve
+    pause 2.0
     scene bg dance with dissolve
 
     show helium happy with enter
@@ -974,6 +990,9 @@ label oxygen_end:
     Nar "Oxygen looks really happy and even a little nervous. When he reaches you he puts his arms around you and leans in."
 
     O "This is my perfect night. You and I will make an intoxicating pair."
+
+    scene co ending with Dissolve(1.0)
+    pause(5.0)
     return 
 
 
@@ -984,6 +1003,9 @@ label nitrogen_end:
     Nar "Nitrogen stands before you and picks up your hands from your waist."
 
     N "I'm glad we're doing this. Our love will be dangerous."
+
+    scene cyanide ending with Dissolve(1.0)
+    pause(5.0)
     return
 
 
@@ -992,5 +1014,8 @@ label ending:
     Nar "You catch a glimpse of Oxygen and Nitrogen dancing together. You are the single particle alone in space."
 
     C "Welp, I should have gone to community college."
+
+    scene lonely ending with Dissolve(1.0)
+    pause(5.0)
 
     return
