@@ -1,30 +1,22 @@
 ﻿I'm sorry, but an uncaught exception occurred.
 
 While running game code:
-  File "game/script.rpy", line 503, in script
-    show oxygen happy at center with wiggle
-Exception: Parameter 'old_widget' is not known by ATL Transform.
+  File "game/script.rpy", line 926, in script
+    jump oxygen_ending
+ScriptError: could not find label 'oxygen_ending'.
 
 -- Full Traceback ------------------------------------------------------------
 
 Full traceback:
-  File "game/script.rpy", line 503, in script
-    show oxygen happy at center with wiggle
-  File "C:\Users\stuar\Downloads\renpy-8.0.3-sdk\renpy\ast.py", line 1658, in execute
-    renpy.exports.with_statement(trans, paired=paired)
-  File "C:\Users\stuar\Downloads\renpy-8.0.3-sdk\renpy\exports.py", line 1657, in with_statement
-    return renpy.game.interface.do_with(trans, paired, clear=clear)
-  File "C:\Users\stuar\Downloads\renpy-8.0.3-sdk\renpy\display\core.py", line 2798, in do_with
-    return self.interact(trans_pause=True,
-  File "C:\Users\stuar\Downloads\renpy-8.0.3-sdk\renpy\display\core.py", line 3377, in interact
-    repeat, rv = self.interact_core(preloads=preloads, trans_pause=trans_pause, pause=pause, pause_start=pause_start, pause_modal=pause_modal, **kwargs) # type: ignore
-  File "C:\Users\stuar\Downloads\renpy-8.0.3-sdk\renpy\display\core.py", line 3752, in interact_core
-    trans = self.ongoing_transition[None](
-  File "C:\Users\stuar\Downloads\renpy-8.0.3-sdk\renpy\atl.py", line 467, in __call__
-    raise Exception('Parameter %r is not known by ATL Transform.' % k)
-Exception: Parameter 'old_widget' is not known by ATL Transform.
+  File "game/script.rpy", line 926, in script
+    jump oxygen_ending
+  File "C:\Users\stuar\Downloads\renpy-8.0.3-sdk\renpy\ast.py", line 1974, in execute
+    rv = renpy.game.script.lookup(target)
+  File "C:\Users\stuar\Downloads\renpy-8.0.3-sdk\renpy\script.py", line 927, in lookup
+    raise ScriptError("could not find label '%s'." % str(original))
+ScriptError: could not find label 'oxygen_ending'.
 
 Windows-10-10.0.19044 AMD64
 Ren'Py 8.0.3.22090809
 Carbon Dating 1.0
-Fri Apr 14 17:29:55 2023
+Fri Apr 14 19:14:42 2023

@@ -1,5 +1,5 @@
 # Open the input file for reading
-with open('script.py', 'r') as input_file:
+with open('game/script.rpy', 'r', encoding='utf-8') as input_file:
 
     # Read the contents of the input file
     input_text = input_file.read()
@@ -15,7 +15,7 @@ with open('script.py', 'r') as input_file:
     modified_text = input_text.replace(old_char2, new_char2)
 
 # Open the output file for writing
-with open('script.py', 'w') as output_file:
+with open('game/script.rpy', 'w', encoding='utf-8') as output_file:
 
     # Write the modified text to the output file
     output_file.write(modified_text)

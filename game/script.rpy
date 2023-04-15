@@ -43,6 +43,7 @@ define nitrogen_love = 0
 define oxygen_love = 0
 define current_path = "oxygen"
 define date_accept = False
+define path_final = "Alone"
 
 # The game starts here.
 label start:
@@ -130,7 +131,7 @@ label classroomA:
     show helium happy with fadeWithText
     He "Everyone please welcome [C.name] to our class. They will be joining us for the rest of the semester.{w} It's not every day that a new student slips into the Honors class at the last minute."
 
-    Nar "The whole of the class looks to you. Some faces smile, others glare, and others simply don’t care. {w} They give you applause led by the Professor."
+    Nar "The whole of the class looks to you. Some faces smile, others glare, and others simply don't care. {w} They give you applause led by the Professor."
     
     hide helium with leave
 
@@ -201,7 +202,7 @@ label classroomA:
     show nitrogen neutral at slighterleft with moveinleft
     pause 0.25
 
-    N "Hi welcome to Catalyst University. I’m Nitrogen."
+    N "Hi welcome to Catalyst University. I'm Nitrogen."
 
     O "Yeah, it's nice to meet you. You can call me Oxygen."
 
@@ -374,10 +375,10 @@ label tuesday_oxygen:
     O "So someone told me you were maybe into me."
     menu:
         "Uh wait, it's not what you think.":
-            show oxygen Sad with fadeWithText
+            show oxygen sad with fadeWithText
             O "So you don't like me?"
             menu:
-                "Wait that’s not what I mean.":
+                "Wait that's not what I mean.":
                     pause 0.1
                 "Well yes but not the way Chlorine may have said.":
                     pause 0.1
@@ -418,7 +419,7 @@ label tuesday_nitrogen:
     Nar "As you cross through a crowded hall you accidentally bump into another student. Both of your books go flying."
     M "Ouch!"
     menu:
-        "Oh, I’m so sorry!":
+        "Oh, I'm so sorry!":
             Nar "The other student you ran into rubs her head and looks up at you.{w} As your eyes meet you realize this is Nitrogen from your honors class." 
             Nar "She appears more embarrassed than she is in pain."
         "Ouch! That must have hurt.":
@@ -440,6 +441,7 @@ label tuesday_nitrogen:
     menu:
         "Oh just to my next class.":
             show nitrogen neutral 
+            $ date_accept = True
             N "I better not keep you then. But hey would you want to hang out at some point? {w}The campus gardens are pretty open around 6 pm tomorrow."
             menu:
                 "Sure, I saw them on my tour of the campus. I'll meet you there tomorrow..":# + Nitrogen opinion
@@ -457,6 +459,7 @@ label tuesday_nitrogen:
         "I'm actually already late for my next class. I have to go.": # - nitrogen opinion 
             $ nitrogen_love -= 5
             show nitrogen sad with fadeWithText
+            $ date_accept = False
             N "Oh of course! I'll see you later then. Good luck."
 
     hide nitrogen with leave
@@ -476,6 +479,10 @@ label tuesday_dorm:
     if date_accept == True:
         if (current_path == "oxygen"):
             jump wednesday_oxygen
+        else:
+            jump wednesday_nitrogen
+    else:
+        jump wednesday_skip
 
 label wednesday_oxygen:
     scene bg bleachers with Dissolve(1.0)
@@ -544,117 +551,446 @@ label wednesday_oxygen:
 
     Nar "Gold takes the substance and looks it over. She seems displeased. She talks with Oxygen and for a moment they seem to argue."
     Nar "But the tension quickly fades and she walks away. Oxygen heads back up to your seats."
+
+    pause 0.5
+    show oxygen neutral at center with moveinleft
+    pause 0.5
+
     Nar "As he sits down you catch a glimpse of the bundle of money he slips into his pocket."
 
     menu:
         "What's the money for?":
+            show oxygen neutral with fadeWithText
+            O "Oh just a side job I have. A way to get some extra cash. Don't worry about it."
+
         "You don't say anything.":
+            Nar "Oxygen sits down settling his things. He looks over to you with a smile and then his focus returns back to the game."
 
+    Nar "About thirty minutes passed and the game wraps up. It seems that your school won and the crowd gives a great round of applause to the players."
+    Nar "You and Oxygen both head for the exit."
 
+    Nar "Before you head to your dorm Oxygen stops you for a moment."
 
+    show oxygen happy with fadeWithText
+    O "Hey I just wanted to let you know that I really enjoyed tonight."
+    O "It was fun, sorry that business got in the way. I appreciate that you didn't flake on me."
+    menu:
+        "Hey it's okay.":
+            show oxygen neutral with fadeWithText
+            O "Good, well I guess I'll see you tomorrow."
 
+        "It wouldn't be right for me just to leave.":
+            show oxygen neutral with fadeWithText
+        O "Yeah I guess you're right. I'll see you tomorrow."
+    
+    O "Oh, by the way, this is kind of cheesy but it's something I got to say."
+    O "I'm attracted to you to the point where I could make a fifth fundamental force. {w}You're really something special [C.name]."
 
+    show oxygen happy with fadeWithText
+    O "Sorry that was way too cheesy."
+    menu: 
+        "Nah it was fine.":
+            pause 0.1
+        "Yes, but sweet.":
+            pause 0.1
 
+    O "I appreciate the support. I'll see you soon."
 
+    Nar "Oxygen heads off to his dorms. You can't help but think about what he just said. {w}Was it too cheesy or was it sweet?"
+    Nar "Also, you aren't sure what happened between him in Gold but you can't think of it now. {w}It's time you headed back to your dorm."
+    jump thursday_begin
 
 
 label wednesday_nitrogen:
+    scene bg class with dissolve
 
+    Nar "You spend all of your Wednesday classes in a daze as you anticipate your meeting with Nitrogen this evening."
+    Nar "There were more than a few instances where you had to snap yourself back to reality during class, and realized that you had missed a large chunk of the lecture."
+
+    Nar "Finally your last class is wrapped up and you exit the building to cross the school grounds at a speed walk so as not to be late."
+    Nar "Nitrogen seems like the kind of person that would hit you upside the head for being late."
+
+    scene bg greenhouse with Dissolve(1)
+
+    Nar "You approach the greenhouse and see the vague shape of someone distorted through the greenhouse glass, but with an unmistakable blue hue."
+    menu:
+        "Sneak up behind her":# - nitrogen opinion
+            $ nitrogen_love -= 5
+            Nar "You enter the greenhouse quietly and tiptoe up behind the familiar figure of Nitrogen."
+            Nar "As you sneak right up behind her, you grab her shoulder and..."
+            C "Boo!"
+
+            show nitrogen sad with moveinbottom
+            N "Eek!"
+
+            show nitrogen at slightleft with ease
+            show nitrogen at slightright with ease
+            show nitrogen at center with ease
+
+            Nar "Nitrogen spins around, fists raised and ready, with a look of terror on her face."
+            Nar "The pot that she was holding shatters on the ground, before she realizes that it's you. {w}She lets out a breath and lowers her hands with a sigh."
+            N "Oh, it's you, [C.name]."
+
+            Nar "She looks down at the shattered pot, looking really bummed. She quickly shakes it off and looks back up to you."
+        "Make your presence known":# + nitrogen opinion
+            $ nitrogen_love += 5
+            Nar "You make some noise as you enter so as not to startle her, and she turns to smile at you with a pot in her hands."
+
+            show nitrogen happy with fadeWithText
+            N "Over here, [C.name]!"
+
+            Nar "She waves you over and you approach curiously, eyeing the pot in her hands."
+            Nar "She sets it on the shelf and spritzes it with a spray bottle."
+    show nitrogen neutral with fadeWithText
+    Nar "Nitrogen hands you a spray bottle and begins misting some of the other plants."
+
+    show nitrogen happy with fadeWithText
+    N "I'm glad you came on time, this is the best time of day to be in the greenhouse."
+    N "It's not too hot because the sun is starting to set, and most people have gone to the dining hall for dinner."
+
+    show nitrogen neutral with fadeWithText
+    N "So..{w=0.5} um..{w=0.5} [C.name], do you have any hobbies?"
+
+    menu:
+        "Uh… I'm currently expanding my horizons. Any suggestions?": #+ nitrogen opinion
+            $ nitrogen_love += 5
+            show nitrogen happy with fadeWithText
+            Nar "Nitrogen smiles, but quickly hides it and attempts to look indifferent."
+
+            show nitrogen neutral with fadeWithText
+            N "Well… I could use some help with making sure these orchids stay humid, so you could start with putting that spray bottle to use. {w}Maybe you'll enjoy gardening."
+
+            show nitrogen happy with fadeWithText
+            Nar "Nitrogen shrugs as if she's indifferent, but when you start misting the orchids enthusiastically, she looks excited to share her hobby with someone."
+            Nar "Suddenly, she turns to you in a snappy movement, seeming flustered about something."
+
+            N "Are you copper because I can CU in a relationship with me?"
+
+            Nar "There's a long pause filled with silence. Nitrogen blushes furiously and turns back to the orchids."
+            Nar "She begins talking again before you have the chance to respond."
+
+
+        "Not really, it's kind of just all studying for me.":# - nitrogen opinion   
+            show nitrogen sad with fadeWithText
+            N "Oh, well… I think it's good to have hobbies. You should really try to find something that you enjoy that isn't school related."
+            Nar "She turns her back and goes back to misting some orchids, trying to appear indifferent."
+
+    show nitrogen neutral with fadeWithText
+    N "Anyway, um, I have a lot of homework that I should get to. But… {w=0.2} I'm looking forward to seeing you in class tomorrow."
+
+    Nar "She sets down the spray bottle and turns away sheepishly, heading for the exit."
+    menu:
+        "Watch her leave":
+            pause 0.1
+        "Yeah, see you!":
+            pause 0.1
+    Nar "As Nitrogen disappears out of the greenhouse, you set down your own spray bottle and gather your things to leave."
+    Nar "As you walk back to your dorm room, your head swims with thoughts about Nitrogen."
+    Nar "You wonder if she's the one that you want to ask to the Molecular Dance, and what she would say if you asked her."
+    jump thursday_begin
+
+label wednesday_skip:
+    Nar "Wednesday is uneventful. You go through your classes without issue and finish all your assignments on time."
+    Nar "You're all set for Thursday mornings class."
+    jump thursday_begin
+
+label thursday_begin:
+    scene bg classroon with Dissolve(1.0)
+    Nar "As you arrive in class this morning you see everyone finding their seats."
+    Nar "You see Chlorine waving you over from where he sat earlier in the week."
+
+    pause 0.25
+    show chlorine neutral with enter
+
+    Nar "As you head over he pulls down into your seat and begins to whisper to you." 
+
+    show chlorine sad with fadeWithText
+    Cl "So I heard you blew it. I can't believe I thought you could get a date of your own. I should have kept my Ion you." 
+    menu:
+        "How did you know?!":
+            show chlorine happy with fadeWithText
+            Cl "Oh I didn't know but I know now. I noticed how your week was going and you just confirmed my theory."
+
+            show chlorine neutral with fadeWithText
+            Cl "But don't worry I'm still in your corner. You just need to repair things."
+            Cl "At the end of class when they approach you, make sure you work things out."
+            Cl "You need a date for the dance. Don't be a stray atom."
+
+        "What are you talking about? It went well.":
+            show chlorine happy with fadeWithText
+            Cl "I know, I was just testing you."
+
+            show chlorine neutral with fade
+            Cl "Based on the times you came back to the dorm I had my theories. I'm happy for you."
+            Cl "It's hard enough to make new friends on this campus. Not to mention getting a date in time for a dance at the end of the week."
+
+            Cl "They'll probably approach you today after class so make sure you know what to say."
+            Cl "You better say yes. You need a date, don't forget."
+
+    hide chlorine with dissolve
+    pause 0.25
+    show helium neutral at center with enter
+    pause 0.25
+    
+
+    Nar "Class starts and as usual Professor Helium drags things out for as long as she can."
+
+    if nitrogen_love >= 10:
+        pause 0.25
+        show helium neutral at right with ease
+        pause 0.25
+        show nitrogen happy at center with enter
+        pause 0.25
+
+        Nar "At one point in the class you catch Nitrogen staring at you. {w}Your eyes meet and she smiles at you."
+
+        pause 0.25
+        hide nitrogen with leave
+        pause 0.25
+        show helium at center with ease
+        pause 0.25
+
+    if oxygen_love >= 10:
+        pause 0.25
+        show helium neutral at right with ease
+        pause 0.25
+        show oxygen happy at center with enter
+        pause 0.25
+        Nar "Near the end of the class you turn to stretch in your see and catch Oxygen looking at you."
+        Nar "He's clearly lost in thought but as your eyes meet he snaps out of it. He smiles at you."
+
+        pause 0.25
+        hide oxygen with leave
+        pause 0.25
+        show helium at center with ease
+        pause 0.25
+    Nar "Professor Helium finishes her lecture. As she does she turns to face the class and becomes more relaxed."
+
+    show helium happy with fadeWithText
+    He "So class how is everyone doing? I'm assuming everyone has their dates for tomorrow night."
+
+    Nar "You see as nearly everyone in class nods. It appears they have already found many of their bonds."
+
+    if oxygen_love >= 15:
+        pause 0.25
+        show helium neutral at right with ease
+        pause 0.25
+        show oxygen happy at center with enter
+        pause 0.25
+        Nar "You catch Oxygen staring at you from the corner of your eye."
+        pause 0.25
+        hide oxygen with leave
+        pause 0.25
+        pause 0.25
+
+    if nitrogen_love >= 15:
+        pause 0.25
+        show helium neutral at right with ease
+        pause 0.25
+        show nitrogen happy at center with enter
+        pause 0.25
+        Nar "You see Nitrogen glance at you for a moment." 
+        pause 0.25
+        hide nitrogen with leave
+        pause 0.25
+        pause 0.25
+
+    pause 0.25
+    pause 0.5
+    show chlorine neutral at left with enter
+    pause 0.25
+
+    show chlorine happy with fadeWithText
+    Cl "Oh yeah I definitely got my date Prof. You can trust me."
+
+    show helium happy with fadeWithText
+    He "Oh really mister Chlorine? Who's the lucky one?"
+
+    Cl "Oh just a sodium kind of guy. We really pair well."
+
+    He "Good for you. Well, I wish the best of luck to the rest of my students too."
+    He "Remember you are all role models for the rest of the university. {w}Catalyst Honors Class Students are meant to stand above the rest."
+
+    hide chlorine with leave
+    pause 0.25
+    show helium at center with ease
+    pause 0.25
+    hide helium with moveoutright
+    pause 0.25
+
+    Nar "Professor Helium finishes her lesson and heads out of the class with a few other students."
+    Nar "As you are lost in thought of what you are going to do about the dance you snap out of it by overhearing an argument between Nitrogen and Oxygen."
+
+    show nitrogen sad at slighterleft with moveinleft
+    show oxygen neutral at slighterright with moveinright
+    N "Was that Ozone I saw?"
+
+    O "It doesn't concern you."
+
+    N "I know what I saw Gold holding with her last night. Don't think I forgot about your past mistakes."
+
+    show oxygen sad with fadeWithText
+    O "Look Nitrogen get out of my business, you don't even care about Ozone. This doesn't concern you"
+
+    show nitrogen sad
+    N "Ozone is a drudge Oxygen and I wouldn't care if you didn't keep stealing from the garden for your ingredients."
+
+    Nar "Oxygen rolls his eyes while Nitrogen sighs and rubs her brow. They both turn to look at you, apparently just realizing you heard everything."
+
+    show oxygen neutral
+    show nitrogen neutral
+    with dissolve
+
+    show oxygen at right
+    show nitrogen at left
+    with ease
+
+    show chlorine happy at center with enter
+
+    Cl "Well you two really know how to make your business everyone else's problem."
+
+    N "Chlorine you're such an Acid."
+
+    O "She's right."
+
+    Cl "Ah whatever, at least I have a date that's so-dium fine."
+
+    Nar "There's a pause in the conversation allowing you to voice your opinion."
+    menu:
+        "I think Nitrogen is right about this.":# + Nitrogen opinion
+            $ nitrogen_love += 5
+        "Oxygen is right it’s none of our business.":# + oxygen opinion
+            $ oxygen_love += 5
+        "Honestly Chlorine you are kind of an Acid.":# +Nitrogen opinion + Oxygen opinion
+            $ oxygen_love += 5
+            $ nitrogen_love += 5
+
+    Nar "Nitrogen and Oxygen both hear you out and softly nod. Chlorine, on the other hand, begins to leave."
+
+    show chlorine neutral with fadeWithText
+    Cl "Well this was an interesting interaction but I think [C.name] had something to say. I'm out of here. See ya."
+
+    Nar "Chlorine makes his exit with a smile and a wave. He grabs his bag and heads out of the class."
+
+    hide chlorine with moveoutright
+
+    show oxygen at slighterright
+    show nitrogen at slighterleft
+    with ease
+
+    Nar "Nitrogen and Oxygen both shake off the interaction and turn to you." 
+
+    menu:
+        "Approach Nitrogen about the Dance." if nitrogen_love >= 20:
+            Nar "You approach Nitrogen. She smiles at you."
+
+            hide oxygen with dissolve
+            show nitrogen at center with ease
+            N "What's up?"
+            C "Would you want to go to the dance with me?"
+
+            show nitrogen happy with fadeWithText
+            N "I thought you'd chicken out. Of course."
+            Nar "Nitrogen leans in and gives you a hug. You can feel the chemistry. While she does so she whispers in your ear."
+
+            show nitrogen neutral with fadeWithText
+            N "If you did chicken out I would have never forgiven you."
+
+            show nitrogen happy with fadeWithText
+            N "I'm joking of course. I'll see you tomorrow [C.name]."
+
+            hide nitrogen with moveoutright
+
+            Nar "Nitrogen gives you a wink and heads out. She seems to shine with happiness. Eventually, you leave the classroom too."
+
+            $ path_final = "Nitrogen"
+
+        "Approach Oxygen about the Dance." if oxygen_love >= 20:
+
+            Nar "You approach Oxygen. He relaxes his posture and smiles."
+
+            hide nitrogen with dissolve
+            show oxygen at center with ease
+            O "So, what do you need?"
+            C "Would you want to go to the dance with me?"
+            show oxygen happy with fadeWithText
+            O "Absolutely. I was a bit worried about yesterday after the way I left things but I'm so happy you still asked."
+
+            Nar "Oxygen leans in and hugs you tightly. He even lifts you up a bit and then sets you down. You can feel the chemistry." 
+
+            show oxygen neutral with fadeWithText
+            O "You've really made me so happy I met you [C.name]. I'll see you tomorrow."
+
+            Nar "Oxygen grabs his things and then leaves the classroom with a smile on his face. You eventually leave the room yourself."
+
+            $ path_final = "Oxygen"
+
+        "Hey guys sorry about overhearing everything. But I have to go.":
+            Nar "You head for the door. It seems like the pair wants to stop you but instead, they let you go."
+            $ path_final = "Nitrogen"
+
+    Nar "You leave the class building and go about your day. The thoughts of what is and what could have been cloud your mind."
+    Nar "But as you finish the rest of your classes for the day you eventually head off to your Dorm room."
+
+    scene bg dorm with dissolve
+    Nar "As you get ready to get some rest for tomorrow Chlorine enters the dorm room shutting the door behind him."
+
+    show chlorine neutral at center with moveinleft
+
+    Cl "No matter what you chose to do I think you chose right. Even if the rest of the school body thinks differently."
+
+    if path_final == "Oxygen":
+        Cl "Yeah maybe you can work things out with him. I trust your judgment. I just can stand too much of him."
+    elif path_final == "Nitrogen":
+        Cl "She's good for you. She wasn't for me, but for you, I think you'll both soar high."
+    else:
+        Cl "There's always next year my lonely particle."
+
+    Nar "Chlorine falls into his bed and quickly falls asleep. Leaving you alone once more."
+    Nar "As you too lay in bed you think about just how tomorrow will go. Hopefully, it won't be a bad reaction."
+    jump friday_begin
+
+label friday_begin:
+    scene bg dance with dissolve
+
+    show helium happy with enter
+    He "Welcome everyone to the Molecular Dance! I see you all have your bonds. Make sure to enjoy yourselves and have a wonderful night!" 
+
+    Nar "The crowds gather and the music booms. The student body thunders to life. Everyone seems to be having a great time."
+    hide helium with leave
+
+    if path_final == "Oxygen":
+        jump oxygen_end
+    if path_final == "Nitrogen":
+        jump nitrogen_end
+    else:
+        jump ending
+
+label oxygen_end:
+    Nar "You see him cut through the crowd as he approaches you."
+
+    show oxygen happy with moveinleft
+
+    Nar "Oxygen looks really happy and even a little nervous. When he reaches you he puts his arms around you and leans in."
+
+    O "This is my perfect night. You and I will make an intoxicating pair."
+    return 
+
+
+label nitrogen_end:
+    Nar "You catch a glimpse of her as she walks towards you."
+
+    show nitrogen happy with moveinleft
+    Nar "Nitrogen stands before you and picks up your hands from your waist."
+
+    N "I'm glad we're doing this. Our love will be dangerous."
+    return
 
 
 label ending:
-    return
+    Nar "Except for you. As you stand alone in the crowd dancing around you."
+    Nar "You catch a glimpse of Oxygen and Nitrogen dancing together. You are the single particle alone in space."
 
-    
-label old:
-    Nar "Press any key to continue to test."    
-
-    show nitrogen happy at slightleft
-    show oxygen happy at slightright
-    with enter
-
-    N "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam vehicula sapien nisi, maximus dictum est porta fringilla. Curabitur eget urna eu elit lacinia pharetra lobortis. " with Dissolve(boxSpeed)
-
-    show nitrogen sad at slightleft with fadeWithText
-
-    N "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin non pharetra nulla, mattis dapibus nisi. "
-    
-    show nitrogen sad at center
-    show oxygen at slighterright
-    with ease
-
-    pause 0.5
-
-    show nitrogen neutral with Dissolve(0.4)
-
-    pause 1.0
-
-    nar "Urna eu elit lacinia pharetra lobortis. ...."
-
-    O "Nope."
-
-    hide oxygen with moveoutright
-
-    N "Aight, I'm out!"
-
-    hide nitrogen with leave
-
-    pause 0.5
-
-    scene bg room
-    $ oxygen_love = 0
+    C "Welp, I should have gone to community college."
 
     return
-
-label testing:
-    "testing"
-
-    
-    python:
-        name = renpy.input("What's your name?")
-
-        C.name = name.strip() or "Carbon"    
-
-    C "hello, [c.name]"
-
-    $ nitrogen_love += 10
-
-    C "[nitrogen_love]"
-
-    menu:
-        "TestingA":
-            "A"
-        "TestingB":
-            "B"
-
-    #play music "music name here" fadeout 1
-    #play sound "sound name here"
-
-    show oxygen happy
-    scene bg room
-
-    # This shows a character sprite. A placeholder is used, but you can
-    # replace it by adding a file named "eileen happy.png" to the images
-    # directory.
-
-    show eileen happy
-
-    show oxygen happy at slightleft
-
-    # These display lines of dialogue.
-
-    N "You've created a new Ren'Py game."
-
-    O "Once you add a story, pictures, and music, you can release it to the world!"
-
-    "Testing something here."
-    "Does this work?"
-
-    "Wow, It's really really dark in here."
-
-    "Lucy" "Better watch out. Testing"
- 
-
-    # This ends the game.
-
-
